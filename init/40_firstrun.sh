@@ -507,12 +507,13 @@ service apache2 start
 if [ "$NO_START_ZM" != "1" ]; then
 	# Start mysql
 	sleep 3
-	service mysql start
+	service mysql restart
 
 	# Update the database if necessary
 	zmupdate.pl -nointeractive
 	zmupdate.pl -f
 
+	sleep 15
 	service zoneminder start
 else
 	echo "MySql and Zoneminder not started."
